@@ -1,0 +1,18 @@
+# Cloudflare Pages custom headers
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+
+# Cache assets aggressively (1 year, immutable)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML never cached (always fresh)
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Root also treated as HTML
+/
+  Cache-Control: public, max-age=0, must-revalidate

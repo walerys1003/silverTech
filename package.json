@@ -1,20 +1,23 @@
 {
-  "name": "webapp",
-  "type": "module",
+  "name": "silvertech-landing",
+  "version": "2.0.0",
+  "description": "SilverTech · Spółdzielnia Socjalna · Strategic Landing Page · Poznań MMXXVI",
+  "author": "Tomasz Kotliński <kotlinski.tomek@gmail.com>",
+  "license": "UNLICENSED",
+  "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "wrangler pages dev",
-    "deploy": "npm run build && wrangler pages deploy",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
-  },
-  "dependencies": {
-    "hono": "^4.12.27"
+    "dev": "wrangler pages dev public --ip 0.0.0.0 --port 3000",
+    "build": "echo 'Static site — no build step required'",
+    "preview": "wrangler pages dev public",
+    "deploy": "wrangler pages deploy public --project-name silvertech --branch main",
+    "deploy:preview": "wrangler pages deploy public --project-name silvertech --branch preview",
+    "clean-port": "fuser -k 3000/tcp 2>/dev/null || true",
+    "test": "curl -s -o /dev/null -w '%{http_code}' http://localhost:3000"
   },
   "devDependencies": {
-    "@hono/vite-build": "^1.2.0",
-    "@hono/vite-dev-server": "^0.25.2",
-    "vite": "^6.3.5",
     "wrangler": "^4.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

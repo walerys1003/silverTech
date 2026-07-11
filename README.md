@@ -1,21 +1,95 @@
-```txt
-npm install
-npm run dev
+# SilverTech · Spółdzielnia Socjalna · Landing + Marketplace
+
+## Project Overview
+- **Name**: SilverTech · Spółdzielnia Socjalna
+- **Goal**: Przełomowa strona landing page dla spółdzielni socjalnej SilverTech z Poznania — podmiotu ekonomii społecznej świadczącego hybrydową opiekę senioralną (AI-companion głosowy Adam + opiekunowie w terenie)
+- **Features**: 12-sekcyjny landing page narracyjny + pełny marketplace 35 usług codziennego życia dla seniora
+
+## URLs
+- **Lokalne (sandbox)**: https://3000-it31c6kypulxfl6lx3c13-d0b9e1e2.sandbox.novita.ai/
+- **Produkcja**: (do wdrożenia na Cloudflare Pages)
+- **Strony**:
+  - `/` — Landing page (12 sekcji narracyjnych)
+  - `/marketplace` — Marketplace Adam Koncierż (katalog 35 usług + 16 wykonawców)
+
+## Design
+Projekt wdrożony z **Genspark Design handoff** (repo `designer2-d43c9f82-5df5-4e13-a7c0-0b63a52e0ca7`, wersja IV — final production).
+
+**Fidelity**: High-fidelity, pixel-perfect production ready.
+
+**Design tokens**:
+- Paleta: paper `#F1EDE4`, ink `#171A16`, night `#0E140F`, sage `#4A6B5A`, ochre `#B8895A` + 4 kolory semaforu
+- Typografia: Instrument Serif (headlines) + Inter (body), pełna skala fluid clamp()
+- Skala global: `html { zoom: 1.5; }` — świadoma decyzja klienta
+
+**12 sekcji landing page**:
+1. Hero — "Nie budujemy startupu. Budujemy instytucję." + wideo cinematic Samson vs lew
+2. Manifest (dark) — 7 deklaracji podpisanych przez Tomasza Kotlińskiego
+3. Diagnoza — 3 portrety seniorów (Halina · Zdzisław · Krystyna) hyperrealistic AI
+4. Demografia — dane GUS + SVG wykres
+5. Adam — AI Companion (dark) — wave-panel + character bible + 5 mockupów aplikacji
+6. Semafor 4-kolorowy — SLA strip
+7. Marketplace teaser → link do podstrony
+8. Pakiety ASYSTA — 4 karty subskrypcji (Kontakt 99 / Dom 199 / Zdrowie 349 / Aktywny 499)
+9. Założyciel — Tomasz Kotliński, portret + bio
+10. Poznań — mapa 45+ partnerstw
+11. Okno strategiczne (dark) — timeline 1995 / 2026 / 2055
+12. Jak zacząć — pierwszy tydzień + CTA telefoniczny +48 501 42 00 42
+
+**Marketplace**: Hero z voice-bar (rotujące prompty), katalog 35 usług w 9 kategoriach z filtrem, 3 warstwy zaufania, 16 wykonawców, 3 kroki zamówienia
+
+## Data Architecture
+- **Data Models**: Statyczne dane inline w HTML (35 usług z data-cat, 16 wykonawców, 7 deklaracji manifestu, 45+ partnerstw)
+- **Storage Services**: Brak — projekt jest w 100% statyczny (zero backend, zero build-step)
+- **Data Flow**: Wszystkie interakcje lokalne (filtr kategorii, scroll reveals IntersectionObserver, rotujące voice prompts, wave-form animacja JS)
+
+## User Guide
+1. Otwórz stronę główną `/` — landing page narracyjny z 12 sekcjami
+2. Przewijaj, aby odkrywać sekcje z animacjami scroll reveal
+3. Użyj bocznej nawigacji (rzymskie liczby i–xii) do skoku między sekcjami
+4. Kliknij "Otwórz Marketplace ↗" w sekcji VII, aby przejść do katalogu usług
+5. Na marketplace użyj filtrów kategorii (Dom, Zdrowie, Mobilność, etc.)
+6. Zadzwoń: +48 501 42 00 42 (pon.-pt. 09:00-17:00)
+
+## Tech Stack
+- **Static HTML/CSS/JS** — self-contained, zero build-step, zero framework
+- **Cloudflare Pages** — hosting statyczny
+- **Google Fonts** — Instrument Serif + Inter (CDN)
+- **Wrangler** — CLI dla Cloudflare Pages
+
+## Deployment
+- **Platform**: Cloudflare Pages
+- **Status**: ✅ Lokalnie zweryfikowane, gotowe do wdrożenia
+- **Tech Stack**: Czysty static HTML/CSS/JS + 18 assetów binarnych (88MB)
+- **Last Updated**: 2026-07-11
+
+## Project Structure
 ```
-
-```txt
-npm run deploy
-```
-
-[For generating/synchronizing types based on your Worker configuration run](https://developers.cloudflare.com/workers/wrangler/commands/#types):
-
-```txt
-npm run cf-typegen
-```
-
-Pass the `CloudflareBindings` as generics when instantiation `Hono`:
-
-```ts
-// src/index.ts
-const app = new Hono<{ Bindings: CloudflareBindings }>()
+webapp/
+├── public/                    ← Cloudflare Pages output (pages_build_output_dir)
+│   ├── index.html             ← Landing page (108KB, 12 sekcji)
+│   ├── marketplace.html       ← Marketplace Adam Koncierż (62KB)
+│   ├── _headers               ← Cache + security headers
+│   ├── _routes.json           ← Static routing (no Functions)
+│   ├── site.webmanifest       ← PWA manifest
+│   └── assets/                ← 18 assetów binarnych (88MB)
+│       ├── samson-lion-hero.mp4          ← Wideo cinematic hero (30MB)
+│       ├── samson-lion-hero-poster.jpg   ← Poster wideo
+│       ├── portrait-halina.png           ← Portret AI · Pani Halina
+│       ├── portrait-zdzislaw.png         ← Portret AI · Pan Zdzisław
+│       ├── portrait-krystyna.png         ← Portret AI · Pani Krystyna
+│       ├── tomasz-kotlinski.jpg          ← Portret założyciela
+│       ├── adam-hero-family.png          ← Mockup: ojciec + syn
+│       ├── adam-triptych-pl.png          ← Mockup: 3 telefony
+│       ├── adam-screen-voice.png         ← Mockup: Adam voice
+│       ├── adam-screen-rodzina.png       ← Mockup: rodzina
+│       ├── adam-screen-zdrowie.png       ← Mockup: monitoring zdrowia
+│       ├── samson-lion-transparent.png   ← Emblemat fallback
+│       ├── og-image-1200.png            ← Open Graph 1200×630
+│       ├── favicon-32/192/512.png        ← Favicony
+│       └── apple-touch-icon.png         ← iOS icon
+├── wrangler.jsonc             ← Cloudflare Pages config
+├── package.json               ← Scripts (dev/deploy)
+├── ecosystem.config.cjs       ← PM2 config
+└── README.md                  ← Ten plik
 ```

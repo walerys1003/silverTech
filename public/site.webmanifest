@@ -1,0 +1,23 @@
+{
+  "name": "SilverTech · Spółdzielnia Socjalna",
+  "short_name": "SilverTech",
+  "description": "Senior-care infrastructure dla rodzin, samorządów i miast. Poznań MMXXVI.",
+  "lang": "pl-PL",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F1EDE4",
+  "theme_color": "#4A6B5A",
+  "icons": [
+    {
+      "src": "assets/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

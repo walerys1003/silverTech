@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketplace · Adam Koncierż · SilverTech · Poznań</title>
+<meta name="description" content="35 usług dla seniora zamawianych głosem u Adama. Sprawdzeni wykonawcy z dojazdem do domu. Krótkie terminy, potrójna weryfikacja.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========== TOKENS · shared with landing ========== */
+:root {
+  --paper: #F1EDE4;
+  --paper-warm: #E8E2D5;
+  --paper-deep: #DFD8C7;
+  --ink: #171A16;
+  --ink-2: #2C312A;
+  --ink-mute: #5C5A54;
+  --ink-soft: #8A867C;
+  --hairline: #B8B3A5;
+  --hairline-soft: rgba(23, 26, 22, 0.14);
+  --night: #0E140F;
+  --night-2: #161C17;
+  --night-ink: #EDE7D7;
+  --night-mute: #9A9788;
+  --sage: #4A6B5A;
+  --sage-deep: #2F4B3E;
+  --ochre: #B8895A;
+  --ochre-deep: #8C6238;
+  --serif: 'Instrument Serif', 'Times New Roman', serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  zoom: 1.5;
+}
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+  background-image: radial-gradient(rgba(23,26,22,0.03) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+::selection { background: var(--sage); color: var(--paper); }
+img { display: block; max-width: 100%; }
+
+.sc { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.72rem; font-weight: 500; }
+.sc-sm { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.66rem; font-weight: 500; }
+.serif { font-family: var(--serif); font-weight: 400; }
+
+/* ========== TOP NAV ========== */
+.topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 20px clamp(28px, 5.5vw, 96px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  transition: background 0.3s ease, border 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+.topnav.solid {
+  background: rgba(241, 237, 228, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--hairline-soft);
+}
+.brand {
+  display: flex; align-items: baseline; gap: 14px;
+  font-family: var(--serif);
+  font-size: 22px;
+  letter-spacing: 0.02em;
+}
+.brand .mark {
+  display: inline-block; width: 8px; height: 8px;
+  background: var(--sage);
+  border-radius: 50%;
+  transform: translateY(-3px);
+}
+.brand small {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.nav-back {
+  color: var(--ink-mute);
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--ink); }
+.nav-back .arrow { font-family: var(--serif); font-style: italic; font-size: 16px; }
+.nav-cta {
+  border: 1px solid var(--ink);
+  padding: 9px 16px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+.nav-cta:hover { background: var(--ink); color: var(--paper); }
+.nav-right {
+  display: flex; align-items: center; gap: 20px;
+}
+
+/* ========== HERO ========== */
+.hero {
+  padding: 120px clamp(48px, 8vw, 128px) 80px;
+  border-bottom: 1px solid var(--hairline-soft);
+  background: var(--paper-warm);
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: clamp(32px, 5vw, 88px);
+  align-items: end;
+}
+.hero-eyebrow {
+  display: flex; gap: 14px; align-items: center;
+  color: var(--ink-mute);
+  margin-bottom: 24px;
+}
+.hero-eyebrow .dot { width: 6px; height: 6px; background: var(--ochre); border-radius: 50%; }
+.hero-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(38px, 4.8vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+  max-width: 720px;
+}
+.hero-title em { color: var(--sage-deep); font-style: italic; }
+.hero-title .ochre { color: var(--ochre-deep); font-style: italic; }
+.hero-lede {
+  font-size: clamp(16px, 1.3vw, 20px);
+  line-height: 1.6;
+  max-width: 620px;
+  color: var(--ink-2);
+}
+.hero-lede em { font-family: var(--serif); color: var(--sage-deep); }
+.hero-meta {
+  display: grid;
+  gap: 24px;
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline-soft);
+}
+.hero-meta-item {
+  display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: baseline;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--hairline-soft);
+}
+.hero-meta-item:last-child { border-bottom: 0; padding-bottom: 0; }
+.hero-meta-item .n {
+  font-family: var(--serif);
+  font-size: 44px;
+  color: var(--ochre-deep);
+  letter-spacing: -0.02em;
+  font-style: italic;
+  line-height: 1;
+}
+.hero-meta-item .l {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+}
+
+/* ========== SEARCH BAR (visual · voice-cta) ========== */
+.voice-bar {
+  margin: 0 clamp(48px, 8vw, 128px);
+  transform: translateY(-42px);
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  padding: 28px 36px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+.voice-bar .mic {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--ochre);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--paper);
+  font-family: var(--serif); font-style: italic; font-size: 22px;
+  flex-shrink: 0;
+  animation: micPulse 2.4s ease-out infinite;
+}
+@keyframes micPulse {
+  0% { box-shadow: 0 0 0 0 rgba(184,137,90,0.5); }
+  70% { box-shadow: 0 0 0 20px rgba(184,137,90,0); }
+  100% { box-shadow: 0 0 0 0 rgba(184,137,90,0); }
+}
+.voice-bar .prompt {
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.8vw, 26px);
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.voice-bar .prompt em { font-style: italic; color: var(--sage-deep); }
+.voice-bar .prompt .cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--ink);
+  vertical-align: middle;
+  margin-left: 2px;
+  animation: cursorBlink 1s infinite;
+  transform: translateY(-2px);
+}
+@keyframes cursorBlink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+.voice-bar .caller {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-mute); font-weight: 500;
+  text-align: right;
+}
+.voice-bar .caller strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--ochre-deep);
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+@media (max-width: 720px) {
+  .voice-bar { grid-template-columns: 1fr; text-align: center; }
+  .voice-bar .caller { text-align: center; }
+}
+
+/* ========== SECTION LAYOUT ========== */
+section {
+  position: relative;
+  padding: clamp(72px, 12vh, 140px) clamp(48px, 8vw, 128px);
+}
+.section-tag {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 40px;
+  color: var(--ink-mute);
+}
+.section-tag .num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+}
+.section-tag .line { flex: 1; max-width: 80px; height: 1px; background: var(--hairline); }
+.section-hd {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: baseline;
+  margin-bottom: 64px;
+}
+.section-hd h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(30px, 3.6vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 640px;
+}
+.section-hd h2 em { color: var(--sage-deep); font-style: italic; }
+.section-hd .lede {
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 540px;
+}
+@media (max-width: 1180px) {
+  .section-hd { grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
+}
+
+/* ========== CATEGORY FILTER ========== */
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 24px 0 40px;
+  border-top: 1px solid var(--hairline-soft);
+  border-bottom: 1px solid var(--hairline-soft);
+  padding-top: 24px;
+  padding-bottom: 24px;
+  margin-bottom: 56px;
+}
+.cat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cat-btn:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.cat-btn.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.cat-btn .count {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ochre-deep);
+  margin-left: 4px;
+}
+.cat-btn.active .count { color: var(--ochre); }
+
+/* ========== SERVICES GRID ========== */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+}
+.service-card {
+  background: var(--paper);
+  padding: 32px 28px 28px;
+  display: flex; flex-direction: column;
+  min-height: 340px;
+  position: relative;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+.service-card:hover { background: var(--paper-warm); }
+.service-card .head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 24px;
+}
+.service-card .num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--ochre-deep);
+  letter-spacing: -0.02em;
+}
+.service-card .cat {
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+}
+.service-card h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+.service-card .desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin-bottom: 24px;
+}
+.service-card .meta {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline-soft);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.service-card .meta .k {
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.service-card .meta .v {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--sage-deep);
+  letter-spacing: -0.01em;
+}
+.service-card .meta .v.fast { color: var(--ochre-deep); }
+.service-card::after {
+  content: '→';
+  position: absolute;
+  top: 32px; right: 28px;
+  font-family: var(--serif);
+  font-size: 24px;
+  color: var(--ochre);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all 0.3s;
+}
+.service-card:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 900px) {
+  .services { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .services { grid-template-columns: 1fr; }
+}
+
+/* ========== TRUST BAND · dark ========== */
+.trust {
+  background: var(--night);
+  color: var(--night-ink);
+  padding: clamp(100px, 14vh, 180px) clamp(48px, 8vw, 128px);
+}
+.trust-header {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(32px, 5vw, 88px);
+  margin-bottom: 72px;
+}
+.trust-header h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(32px, 4.2vw, 60px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--night-ink);
+  max-width: 680px;
+}
+.trust-header h2 em { color: var(--ochre); font-style: italic; }
+.trust-header .lede {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--night-mute);
+  max-width: 480px;
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(237,231,215,0.14);
+  border-top: 1px solid rgba(237,231,215,0.14);
+  border-bottom: 1px solid rgba(237,231,215,0.14);
+}
+.trust-card {
+  background: var(--night);
+  padding: 40px 32px;
+  min-height: 320px;
+  display: flex; flex-direction: column;
+}
+.trust-card .num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 44px;
+  color: var(--ochre);
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.trust-card h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.1;
+  color: var(--night-ink);
+  margin-bottom: 16px;
+}
+.trust-card p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--night-mute);
+}
+.trust-card .stamp {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(237,231,215,0.14);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ochre);
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .trust-header { grid-template-columns: 1fr; gap: 24px; }
+  .trust-grid { grid-template-columns: 1fr; }
+}
+
+/* ========== PROVIDERS GRID ========== */
+.providers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+}
+.provider-card {
+  background: var(--paper);
+  padding: 28px 24px;
+  min-height: 340px;
+  display: flex; flex-direction: column;
+  transition: background 0.3s;
+}
+.provider-card:hover { background: var(--paper-warm); }
+.provider-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--paper-deep);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-size: 32px;
+  color: var(--sage-deep);
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+  border: 1px solid var(--hairline-soft);
+}
+.provider-card .name {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 4px;
+  letter-spacing: -0.005em;
+}
+.provider-card .cat {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ochre-deep);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.provider-card .rating {
+  display: flex; align-items: baseline; gap: 8px;
+  margin-bottom: 4px;
+}
+.provider-card .rating .stars {
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--ochre);
+  letter-spacing: 0.05em;
+}
+.provider-card .rating .score {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--sage-deep);
+}
+.provider-card .completed {
+  font-size: 11px;
+  color: var(--ink-mute);
+  margin-bottom: 16px;
+}
+.provider-card .area {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline-soft);
+  margin-top: auto;
+}
+.provider-card .area strong {
+  display: block;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.provider-badges {
+  display: flex; gap: 4px; flex-wrap: wrap;
+  padding-top: 12px;
+  margin-top: 12px;
+}
+.provider-badges span {
+  display: inline-block;
+  padding: 3px 8px;
+  border: 1px solid var(--sage);
+  color: var(--sage-deep);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@media (max-width: 1180px) {
+  .providers { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .providers { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .providers { grid-template-columns: 1fr; }
+}
+
+/* ========== HOW-TO band ========== */
+.how {
+  padding: clamp(100px, 14vh, 180px) clamp(48px, 8vw, 128px);
+  background: var(--paper-warm);
+}
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--hairline);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  margin-top: 56px;
+}
+.how-step {
+  background: var(--paper);
+  padding: 36px 32px 32px;
+  min-height: 280px;
+  display: flex; flex-direction: column;
+}
+.how-step .n {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 44px;
+  color: var(--ochre-deep);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.how-step h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.how-step p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+.how-step .time {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline-soft);
+  font-family: var(--serif); font-style: italic;
+  font-size: 15px; color: var(--sage-deep);
+}
+@media (max-width: 900px) {
+  .how-grid { grid-template-columns: 1fr; }
+}
+
+/* ========== CTA BAND ========== */
+.cta {
+  padding: clamp(120px, 18vh, 220px) clamp(48px, 8vw, 128px);
+  text-align: center;
+}
+.cta h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(34px, 4.4vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 780px;
+  margin: 0 auto 32px;
+}
+.cta h2 em { color: var(--sage-deep); font-style: italic; }
+.cta .phone {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(28px, 3.4vw, 44px);
+  color: var(--ochre-deep);
+  letter-spacing: -0.01em;
+  margin: 40px 0 16px;
+}
+.cta .phone a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--ochre); padding-bottom: 4px; }
+.cta .hours {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  background: var(--night);
+  color: var(--night-mute);
+  padding: 72px clamp(48px, 8vw, 128px) 48px;
+  font-size: 12px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(237,231,215,0.14);
+}
+.footer-brand .b {
+  font-family: var(--serif);
+  font-size: 32px;
+  color: var(--night-ink);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.footer-brand p { line-height: 1.6; max-width: 320px; }
+footer h5 {
+  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--ochre); font-weight: 500; margin-bottom: 20px;
+}
+footer ul { list-style: none; }
+footer li { padding: 6px 0; line-height: 1.5; }
+footer li a { color: var(--night-mute); text-decoration: none; transition: color 0.2s; }
+footer li a:hover { color: var(--night-ink); }
+.footer-bottom {
+  padding-top: 32px;
+  display: flex; justify-content: space-between; align-items: baseline;
+  flex-wrap: wrap; gap: 16px;
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500;
+}
+@media (max-width: 760px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+/* ========== REVEALS ========== */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal.d1 { transition-delay: 0.08s; }
+.reveal.d2 { transition-delay: 0.16s; }
+.reveal.d3 { transition-delay: 0.24s; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1180px) {
+  section { padding-left: clamp(24px, 5vw, 72px); padding-right: clamp(24px, 5vw, 72px); }
+  .topnav { padding: 18px clamp(20px, 4vw, 48px); }
+  .hero { padding: 108px 40px 72px; }
+  .voice-bar { margin: 0 24px; padding: 24px 28px; }
+  .services { grid-template-columns: repeat(2, 1fr); }
+  .providers { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  section { padding: 72px 20px; }
+  .hero { padding: 88px 20px 56px; }
+  .voice-bar { margin: 0 20px; padding: 20px 20px; }
+  .hero-title { font-size: clamp(30px, 8vw, 48px); }
+  .services { grid-template-columns: 1fr; }
+  .providers { grid-template-columns: 1fr; }
+  .brand small { display: none; }
+  .brand { font-size: 18px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+
+html, body { overflow-x: clip; max-width: 100%; }
+</style>
+</head>
+<body>
+
+<!-- ============================== TOP NAV ============================== -->
+<nav class="topnav" id="topnav">
+  <div class="brand">
+    <span class="mark"></span>
+    SilverTech
+    <small>Marketplace · Adam Koncierż</small>
+  </div>
+  <div class="nav-right">
+    <a class="nav-back" href="index.html"><span class="arrow">←</span> Wróć do SilverTech</a>
+    <a class="nav-cta" href="#kontakt">Zadzwoń ↗</a>
+  </div>
+</nav>
+
+<!-- ============================== HERO ============================== -->
+<section class="hero" id="hero" data-screen-label="Hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow reveal in">
+        <span class="dot"></span>
+        <span class="sc-sm">Marketplace · dla podopiecznych SilverTech</span>
+      </div>
+      <h1 class="hero-title reveal in d1">
+        Powiedz Adamowi <em>czego potrzebujesz.</em>
+        <span class="ochre">Reszta to nasza sprawa.</span>
+      </h1>
+      <p class="hero-lede reveal in d2">
+        Marketplace „Adam Koncierż" to <em>głosowa poczekalnia</em> — nie aplikacja. Senior nie
+        wpisuje niczego, nie klika, nie szuka. Mówi jedno zdanie do Adama i tego samego dnia
+        ktoś sprawdzony puka do jego drzwi. Rodzina widzi w dashboardzie kto, kiedy, za ile.
+      </p>
+    </div>
+
+    <div class="hero-meta reveal in d3">
+      <div class="hero-meta-item">
+        <div class="n">35</div>
+        <div class="l">Kategorii usług<br>dostępnych głosem</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="n">250<span style="font-size:0.6em;">+</span></div>
+        <div class="l">Sprawdzonych<br>wykonawców w sieci</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="n">&lt; 24<span style="font-size:0.55em;">h</span></div>
+        <div class="l">Średni czas oczekiwania<br>na wykonawcę</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="n">18<span style="font-size:0.55em;">%</span></div>
+        <div class="l">Prowizja SilverTech<br>(pozostałe 82% → wykonawca)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== VOICE BAR ============================== -->
+<div class="voice-bar reveal in d3">
+  <div class="mic">A</div>
+  <div class="prompt">
+    <em>„Adamie,</em> potrzebuję dziś hydraulika<span class="cursor"></span>"
+  </div>
+  <div class="caller">
+    Rozmowa Adama<br>
+    <strong>o godz. 09:47</strong>
+  </div>
+</div>
+
+<!-- ============================== CATEGORIES + SERVICES ============================== -->
+<section id="uslugi" data-screen-label="Katalog usług">
+  <div class="section-tag">
+    <span class="num">i.</span>
+    <span class="sc-sm">Katalog · 35 usług</span>
+    <span class="line"></span>
+    <span class="sc-sm">Filtruj po kategorii</span>
+  </div>
+
+  <div class="section-hd">
+    <h2 class="reveal">
+      Wszystko czego dom<br>
+      wymaga w ciągu roku —<br>
+      <em>jednym numerem.</em>
+    </h2>
+    <p class="lede reveal d1">
+      Dobór usług oparty na rzeczywistych zamówieniach z pilotażu MOPR w Poznaniu i wywiadach
+      z 120 rodzinami. Nie ma tu <em style="font-family:var(--serif); color:var(--sage-deep);">niczego
+      wymyślonego przy biurku</em> — każda pozycja odpowiada na realne pytanie, które senior
+      lub jego dziecko zadaje przynajmniej raz w kwartale.
+    </p>
+  </div>
+
+  <div class="category-filter reveal">
+    <button class="cat-btn active" data-cat="all">Wszystkie <span class="count">35</span></button>
+    <button class="cat-btn" data-cat="dom">Dom i naprawy <span class="count">08</span></button>
+    <button class="cat-btn" data-cat="sprzatanie">Sprzątanie <span class="count">05</span></button>
+    <button class="cat-btn" data-cat="zdrowie">Zdrowie i pielęgnacja <span class="count">07</span></button>
+    <button class="cat-btn" data-cat="mobilnosc">Mobilność <span class="count">04</span></button>
+    <button class="cat-btn" data-cat="kuchnia">Kuchnia <span class="count">03</span></button>
+    <button class="cat-btn" data-cat="ogrod">Ogród i balkon <span class="count">02</span></button>
+    <button class="cat-btn" data-cat="digital">Digital i biuro <span class="count">03</span></button>
+    <button class="cat-btn" data-cat="prawo">Prawo i doradztwo <span class="count">03</span></button>
+  </div>
+
+  <div class="services" id="services-grid">
+    <!-- DOM I NAPRAWY (8) -->
+    <article class="service-card" data-cat="dom">
+      <div class="head"><span class="num">01</span><span class="cat">Dom · Naprawy</span></div>
+      <h3>Hydraulik</h3>
+      <p class="desc">Cieknący kran, awaria WC, zapchany odpływ, wymiana baterii, drobne przeróbki instalacji. Interwencja awaryjna dostępna w 4 godziny.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">120 zł / h</div></div>
+        <div><div class="k">Realizacja</div><div class="v fast">Ten sam dzień</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="dom">
+      <div class="head"><span class="num">02</span><span class="cat">Dom · Naprawy</span></div>
+      <h3>Elektryk</h3>
+      <p class="desc">Wymiana gniazdek, lampek, bezpieczników, drobne instalacje. Awarie priorytetowe (brak prądu) — dojazd w godzinę.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">140 zł / h</div></div>
+        <div><div class="k">Realizacja</div><div class="v fast">Ten sam dzień</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="dom">
+      <div class="head"><span class="num">03</span><span class="cat">Dom · Naprawy</span></div>
+      <h3>Ślusarz · awaryjne otwieranie</h3>
+      <p class="desc">Trzaśnięcie drzwi, zgubiony klucz, wymiana zamka. Dyżur 24/7 z dojazdem w 60 minut w promieniu Poznania.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">180 zł</div></div>
+        <div><div class="k">Realizacja</div><div class="v fast">24/7 · 60 min</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="dom">
+      <div class="head"><span class="num">04</span><span class="cat">Dom · Naprawy</span></div>
+      <h3>Złota rączka</h3>
+      <p class="desc">Drobne naprawy, których nie robi hydraulik ani elektryk — wieszanie obrazu, oliwienie zawiasów, wymiana uszczelki, montaż półki.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">80 zł / h</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 48h</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="dom">
+      <div class="head"><span class="num">05</span><span class="cat">Dom · Naprawy</span></div>
+      <h3>Montaż mebli</h3>
+      <p class="desc">Nowa szafa z paczki, regał, komoda, łóżko. Wnosimy, montujemy, sprzątamy karton po sobie. Zawsze dwie osoby.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">150 zł</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 3 dni</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="dom">
+      <div class="head"><span class="num">06</span><span class="cat">Dom · Naprawy</span></div>
+      <h3>Malowanie ściany</h3>
+      <p class="desc">Odświeżenie jednej ściany, całego pokoju, sufitu. Zabezpieczamy meble, sprzątamy po sobie. Farba w cenie usługi.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">28 zł / m²</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 5 dni</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="dom">
+      <div class="head"><span class="num">07</span><span class="cat">Dom · Naprawy</span></div>
+      <h3>Czyszczenie klimatyzacji</h3>
+      <p class="desc">Serwis raz na 6 miesięcy — czyszczenie filtrów, dezynfekcja, uzupełnienie czynnika. Ważne przed sezonem letnim.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">220 zł</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 7 dni</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="dom">
+      <div class="head"><span class="num">08</span><span class="cat">Dom · Naprawy</span></div>
+      <h3>Naprawa AGD</h3>
+      <p class="desc">Pralka, lodówka, zmywarka, piekarnik. Diagnoza w domu, wycena przed naprawą, gwarancja 6 miesięcy na wykonaną usługę.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">180 zł</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 48h</div></div>
+      </div>
+    </article>
+
+    <!-- SPRZĄTANIE (5) -->
+    <article class="service-card" data-cat="sprzatanie">
+      <div class="head"><span class="num">09</span><span class="cat">Sprzątanie</span></div>
+      <h3>Sprzątanie mieszkania</h3>
+      <p class="desc">Regularne (raz w tygodniu, raz w miesiącu) lub jednorazowe. Odkurzanie, mycie podłóg, ścieranie kurzu, czyszczenie łazienki i kuchni.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">45 zł / h</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 48h</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="sprzatanie">
+      <div class="head"><span class="num">10</span><span class="cat">Sprzątanie</span></div>
+      <h3>Pranie · prasowanie</h3>
+      <p class="desc">Odbieramy pranie z domu, pierzemy, prasujemy, zwracamy w torbie z etykietami. Osobno kolory, osobno delikatne.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">18 zł / kg</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 48h</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="sprzatanie">
+      <div class="head"><span class="num">11</span><span class="cat">Sprzątanie</span></div>
+      <h3>Mycie okien</h3>
+      <p class="desc">Wewnątrz i na zewnątrz, z ramami i parapetami. Do 5. piętra bez podnośnika. Dla mieszkań seniorów bez balkonu — kluczowe wiosną.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">18 zł / okno</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 5 dni</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="sprzatanie">
+      <div class="head"><span class="num">12</span><span class="cat">Sprzątanie</span></div>
+      <h3>Sezonowe porządki</h3>
+      <p class="desc">Wielkie sprzątanie wiosenne lub przedświąteczne. Pralnia dywanów, mycie żyrandola, odkurzanie za meblami, ściereczka po każdej książce.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">380 zł</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 7 dni</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="sprzatanie">
+      <div class="head"><span class="num">13</span><span class="cat">Sprzątanie</span></div>
+      <h3>Pielęgnacja grobu</h3>
+      <p class="desc">Sprzątanie, wymiana kwiatów, zapalenie znicza. Cotygodniowo lub przy okazji ważnych dat. Zdjęcie po każdej wizycie w dashboardzie rodziny.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">60 zł / wizyta</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 3 dni</div></div>
+      </div>
+    </article>
+
+    <!-- ZDROWIE (7) -->
+    <article class="service-card" data-cat="zdrowie">
+      <div class="head"><span class="num">14</span><span class="cat">Zdrowie</span></div>
+      <h3>Fizjoterapeuta · dojazd</h3>
+      <p class="desc">Rehabilitacja po urazie, przy bólach kręgosłupa, po udarze. Certyfikowany fizjoterapeuta z dyplomem AWF, pełen sprzęt w torbie.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">180 zł / wizyta</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 48h</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="zdrowie">
+      <div class="head"><span class="num">15</span><span class="cat">Zdrowie</span></div>
+      <h3>Masażysta · również niewidomi</h3>
+      <p class="desc">Masaż relaksacyjny i leczniczy. W sieci SilverTech pracuje sześciu masażystów z dysfunkcją wzroku — jedni z najlepszych w Poznaniu.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">140 zł / 60 min</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 3 dni</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="zdrowie">
+      <div class="head"><span class="num">16</span><span class="cat">Zdrowie</span></div>
+      <h3>Pobranie krwi w domu</h3>
+      <p class="desc">Pielęgniarka z torbą laboratoryjną. Wyniki dostajesz mailem na drugi dzień, kopia trafia do koordynatora SilverTech.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">80 zł + koszt</div></div>
+        <div><div class="k">Realizacja</div><div class="v fast">Do 24h</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="zdrowie">
+      <div class="head"><span class="num">17</span><span class="cat">Zdrowie</span></div>
+      <h3>Pielęgniarka · zastrzyki, opatrunki</h3>
+      <p class="desc">Iniekcje domowe, zmiana opatrunków po zabiegu, wlewy, cewnikowanie. Zawsze ta sama pielęgniarka jeśli tylko dostępna.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">60 zł / wizyta</div></div>
+        <div><div class="k">Realizacja</div><div class="v fast">Do 24h</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="zdrowie">
+      <div class="head"><span class="num">18</span><span class="cat">Zdrowie</span></div>
+      <h3>Fryzjer · dojazd</h3>
+      <p class="desc">Strzyżenie, farbowanie, modelowanie — u seniora w domu. Fryzjerki z dziesięcioletnim stażem pracy z klientami senioralnymi.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">80 zł</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 5 dni</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="zdrowie">
+      <div class="head"><span class="num">19</span><span class="cat">Zdrowie</span></div>
+      <h3>Manicure</h3>
+      <p class="desc">Klasyczny, hybrydowy, japoński. Dobór lakieru po rozmowie. Dyskretnie, godzinę, bez cisznięcia.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">90 zł</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 5 dni</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="zdrowie">
+      <div class="head"><span class="num">20</span><span class="cat">Zdrowie</span></div>
+      <h3>Pedicure leczniczy</h3>
+      <p class="desc">Podolog z dyplomem — obcinanie paznokci, usuwanie odcisków i zrogowaceń, opatrunek na pęknięte pięty. Dla seniorów po cukrzycy niezbędne.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">140 zł</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 5 dni</div></div>
+      </div>
+    </article>
+
+    <!-- MOBILNOŚĆ (4) -->
+    <article class="service-card" data-cat="mobilnosc">
+      <div class="head"><span class="num">21</span><span class="cat">Mobilność</span></div>
+      <h3>Transport do lekarza</h3>
+      <p class="desc">Kierowca z asystą — pomaga wsiąść, czeka pod przychodnią, odwozi z powrotem. Możliwość transportu z wózkiem inwalidzkim.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">85 zł / kurs</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 48h</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="mobilnosc">
+      <div class="head"><span class="num">22</span><span class="cat">Mobilność</span></div>
+      <h3>Zakupy z listy</h3>
+      <p class="desc">Senior mówi listę Adamowi, my kupujemy w wybranym sklepie i przywozimy. Wybór między Biedronką, Kauflandem, Piotr i Paweł, targiem.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">25 zł + koszt</div></div>
+        <div><div class="k">Realizacja</div><div class="v fast">Ten sam dzień</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="mobilnosc">
+      <div class="head"><span class="num">23</span><span class="cat">Mobilność</span></div>
+      <h3>Wyprowadzanie psa</h3>
+      <p class="desc">30-60 minut spaceru, przy okazji zakupy jeśli senior o coś prosi. Zdjęcia psa w akcji trafiają do dashboardu — dla rodziny w Krakowie ważne.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">35 zł / spacer</div></div>
+        <div><div class="k">Realizacja</div><div class="v fast">Ten sam dzień</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="mobilnosc">
+      <div class="head"><span class="num">24</span><span class="cat">Mobilność</span></div>
+      <h3>Kurier · wysyłka i odbiór</h3>
+      <p class="desc">Odbieramy paczkę z paczkomatu, przywozimy list z poczty, wysyłamy podpisany dokument do rodziny. Wszystko za jedną rozmowę z Adamem.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">28 zł / trasa</div></div>
+        <div><div class="k">Realizacja</div><div class="v fast">Ten sam dzień</div></div>
+      </div>
+    </article>
+
+    <!-- KUCHNIA (3) -->
+    <article class="service-card" data-cat="kuchnia">
+      <div class="head"><span class="num">25</span><span class="cat">Kuchnia</span></div>
+      <h3>Obiady z dowozem · dietetyczne</h3>
+      <p class="desc">Dieta lekkostrawna, cukrzycowa, wątrobowa, po zawale. Menu układane z dietetykiem SilverTech. Dostawa 5 dni w tygodniu.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">32 zł / obiad</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Kolejny dzień</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="kuchnia">
+      <div class="head"><span class="num">26</span><span class="cat">Kuchnia</span></div>
+      <h3>Catering rodzinny</h3>
+      <p class="desc">Święta, urodziny, chrzciny, komunia u seniora w domu. Menu, obsługa, sprzątanie po. Pełen serwis dla 4-20 osób.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">85 zł / os.</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 14 dni</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="kuchnia">
+      <div class="head"><span class="num">27</span><span class="cat">Kuchnia</span></div>
+      <h3>Warsztaty kulinarne</h3>
+      <p class="desc">Dietetyk-trener SilverTech przychodzi na dwie godziny, uczy jak przygotować proste dania z minimalnym wysiłkiem. Grupowe lub indywidualne.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">140 zł / os.</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 7 dni</div></div>
+      </div>
+    </article>
+
+    <!-- OGRÓD (2) -->
+    <article class="service-card" data-cat="ogrod">
+      <div class="head"><span class="num">28</span><span class="cat">Ogród</span></div>
+      <h3>Ogrodnik</h3>
+      <p class="desc">Koszenie trawy, przycinanie krzewów, grabienie liści, sadzenie sezonowych roślin. Ogród przydomowy do 200 m² — jedna wizyta.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">65 zł / h</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 5 dni</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="ogrod">
+      <div class="head"><span class="num">29</span><span class="cat">Ogród</span></div>
+      <h3>Pielęgnacja balkonu</h3>
+      <p class="desc">Podlewanie kwiatów w wakacje, sadzenie sezonowych, uprzątanie po zimie. Cyklicznie co dwa tygodnie lub jednorazowo.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">45 zł / wizyta</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 5 dni</div></div>
+      </div>
+    </article>
+
+    <!-- DIGITAL (3) -->
+    <article class="service-card" data-cat="digital">
+      <div class="head"><span class="num">30</span><span class="cat">Digital</span></div>
+      <h3>Pomoc IT dla seniora</h3>
+      <p class="desc">Nie działa telewizor. Zawieszony laptop. „Nie widzę zdjęć od wnuka". Cierpliwa osoba przyjeżdża i wyjaśnia — bez pośpiechu.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">80 zł / h</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 48h</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="digital">
+      <div class="head"><span class="num">31</span><span class="cat">Digital</span></div>
+      <h3>Konfiguracja telefonu · tabletu</h3>
+      <p class="desc">Nowy smartfon lub tablet — ustawiamy krok po kroku, tłumaczymy tylko to, co jest potrzebne, zostawiamy kartkę z instrukcją.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">140 zł</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 5 dni</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="digital">
+      <div class="head"><span class="num">32</span><span class="cat">Digital</span></div>
+      <h3>Obsługa e-urząd · ZUS · Empatia</h3>
+      <p class="desc">Wypełnianie wniosków online, założenie profilu zaufanego, sprawdzenie stanu emerytury, e-recepty. Cała biurokracja online w rękach seniora.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">120 zł / sprawa</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 5 dni</div></div>
+      </div>
+    </article>
+
+    <!-- PRAWO (3) -->
+    <article class="service-card" data-cat="prawo">
+      <div class="head"><span class="num">33</span><span class="cat">Prawo</span></div>
+      <h3>Notariusz z dojazdem</h3>
+      <p class="desc">Testament, pełnomocnictwo, umowa darowizny, poświadczenie dokumentów. Notariusz przychodzi do seniora, senior nie musi jechać do kancelarii.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">380 zł + taksa</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 7 dni</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="prawo">
+      <div class="head"><span class="num">34</span><span class="cat">Prawo</span></div>
+      <h3>Doradca podatkowy</h3>
+      <p class="desc">PIT emerytalny, ulga rehabilitacyjna, spadki, darowizny. Konsultacja telefoniczna lub w domu. Rozliczenie roczne w cenie.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">200 zł / sprawa</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 7 dni</div></div>
+      </div>
+    </article>
+
+    <article class="service-card" data-cat="prawo">
+      <div class="head"><span class="num">35</span><span class="cat">Prawo</span></div>
+      <h3>Tłumacz przysięgły</h3>
+      <p class="desc">Dokumenty z Niemiec, Wielkiej Brytanii, USA — rodzina za granicą, dzieci emigrantów. Tłumaczymy akty, umowy, korespondencję urzędową.</p>
+      <div class="meta">
+        <div><div class="k">Cena od</div><div class="v">55 zł / strona</div></div>
+        <div><div class="k">Realizacja</div><div class="v">Do 5 dni</div></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================== TRUST BAND · dark ============================== -->
+<section class="trust" id="zaufanie" data-screen-label="Zaufanie">
+  <div class="section-tag" style="color: var(--night-mute);">
+    <span class="num" style="color: var(--ochre);">ii.</span>
+    <span class="sc-sm">Trzy warstwy zaufania</span>
+    <span class="line" style="background: rgba(237,231,215,0.24);"></span>
+    <span class="sc-sm">Weryfikacja wykonawców</span>
+  </div>
+
+  <div class="trust-header">
+    <h2 class="reveal">
+      Każdy wykonawca<br>
+      w naszej sieci —<br>
+      <em>weryfikowany trzykrotnie.</em>
+    </h2>
+    <p class="lede reveal d1">
+      Senior otwierając drzwi <em style="font-family:var(--serif); color:var(--ochre);">nie zaprasza
+      obcego człowieka z ogłoszenia.</em> Zaprasza kogoś, kto przeszedł trzy niezależne warstwy
+      weryfikacji i pracuje na swój ranking przy każdej wizycie. To nie jest platforma anonimowa —
+      to jest sieć imion, twarzy i historii.
+    </p>
+  </div>
+
+  <div class="trust-grid">
+    <article class="trust-card reveal">
+      <div class="num">01</div>
+      <h3>Zaświadczenie o niekaralności · KRK</h3>
+      <p>Każdy wykonawca dostarcza aktualne zaświadczenie z Krajowego Rejestru Karnego. Bez wyjątków — od hydraulika po notariusza. Weryfikujemy datę wystawienia i wymagamy odświeżenia co dwanaście miesięcy.</p>
+      <div class="stamp">Bez wyjątków · aktualizacja 12 mies.</div>
+    </article>
+
+    <article class="trust-card reveal d1">
+      <div class="num">02</div>
+      <h3>Ubezpieczenie OC · do 100 000 zł</h3>
+      <p>Jeśli podczas wizyty coś się zepsuje, coś zniknie, coś pójdzie nie tak — koszt pokrywa polisa wykonawcy, nie senior. Sprawdzamy ważność polisy przed każdym zleceniem. Roszczenia zgłasza koordynator SilverTech.</p>
+      <div class="stamp">Polisa weryfikowana przy każdym zleceniu</div>
+    </article>
+
+    <article class="trust-card reveal d2">
+      <div class="num">03</div>
+      <h3>Ocena po każdej wizycie</h3>
+      <p>Po każdej wizycie Adam dzwoni do seniora: „Jak poszło?". Ocena 1-5 + krótka odpowiedź głosowa. Wykonawca z oceną poniżej 4,5/5 znika z sieci po trzech negatywnych opiniach. Ranking widoczny dla rodziny w dashboardzie.</p>
+      <div class="stamp">&lt; 4,5 / 5 · 3 × → wypadnięcie z sieci</div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================== PROVIDERS ============================== -->
+<section id="wykonawcy" data-screen-label="Wykonawcy">
+  <div class="section-tag">
+    <span class="num">iii.</span>
+    <span class="sc-sm">Sprawdzeni wykonawcy</span>
+    <span class="line"></span>
+    <span class="sc-sm">30 osób w sieci · Poznań i okolice</span>
+  </div>
+
+  <div class="section-hd">
+    <h2 class="reveal">
+      Nie „platforma".<br>
+      <em>Sieć imion i twarzy.</em>
+    </h2>
+    <p class="lede reveal d1">
+      Poniżej trzydziestu wykonawców, którzy przeszli pełną weryfikację i mają na koncie
+      przynajmniej jedno zlecenie z podopiecznym SilverTech. Każdą kartę można kliknąć
+      w rozmowie z Adamem: <em style="font-family:var(--serif); color:var(--sage-deep);">„Adamie,
+      poproszę Panią Beatę na jutro."</em>
+    </p>
+  </div>
+
+  <div class="providers">
+    <article class="provider-card reveal">
+      <div class="provider-avatar">JZ</div>
+      <div class="name">Jarosław Zieliński</div>
+      <div class="cat">Hydraulik · Elektryk</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">4,9</span></div>
+      <div class="completed">142 zlecenia w sieci</div>
+      <div class="area"><strong>Obszar</strong>Grunwald · Wilda · Jeżyce</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span><span>SilverTech</span></div>
+    </article>
+
+    <article class="provider-card reveal d1">
+      <div class="provider-avatar">BM</div>
+      <div class="name">Beata Michalak</div>
+      <div class="cat">Fryzjer · Manicure</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">5,0</span></div>
+      <div class="completed">218 zleceń w sieci</div>
+      <div class="area"><strong>Obszar</strong>Cały Poznań + Luboń</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span><span>SilverTech</span></div>
+    </article>
+
+    <article class="provider-card reveal d2">
+      <div class="provider-avatar">MW</div>
+      <div class="name">Marek Woźniak</div>
+      <div class="cat">Fizjoterapeuta · AWF</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">4,8</span></div>
+      <div class="completed">96 zleceń w sieci</div>
+      <div class="area"><strong>Obszar</strong>Nowe Miasto · Stare Miasto</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span><span>Certyfikat AWF</span></div>
+    </article>
+
+    <article class="provider-card reveal d3">
+      <div class="provider-avatar">KP</div>
+      <div class="name">Krzysztof Pietrzak</div>
+      <div class="cat">Masażysta niewidomy</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">5,0</span></div>
+      <div class="completed">184 zlecenia w sieci</div>
+      <div class="area"><strong>Obszar</strong>Grunwald · Jeżyce</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span><span>PZN</span></div>
+    </article>
+
+    <article class="provider-card reveal">
+      <div class="provider-avatar">AL</div>
+      <div class="name">Aleksandra Lewandowska</div>
+      <div class="cat">Pielęgniarka</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">4,9</span></div>
+      <div class="completed">156 zleceń w sieci</div>
+      <div class="area"><strong>Obszar</strong>Cały Poznań</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span><span>PWZ</span></div>
+    </article>
+
+    <article class="provider-card reveal d1">
+      <div class="provider-avatar">RS</div>
+      <div class="name">Robert Szymczak</div>
+      <div class="cat">Transport · Kierowca</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">4,7</span></div>
+      <div class="completed">312 zleceń w sieci</div>
+      <div class="area"><strong>Obszar</strong>Poznań + powiat</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span><span>Wózek</span></div>
+    </article>
+
+    <article class="provider-card reveal d2">
+      <div class="provider-avatar">EK</div>
+      <div class="name">Elżbieta Kowalczyk</div>
+      <div class="cat">Sprzątanie · Pranie</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">4,9</span></div>
+      <div class="completed">274 zlecenia w sieci</div>
+      <div class="area"><strong>Obszar</strong>Wilda · Dębiec</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span></div>
+    </article>
+
+    <article class="provider-card reveal d3">
+      <div class="provider-avatar">TN</div>
+      <div class="name">Tomasz Nowak</div>
+      <div class="cat">Złota rączka · Montaż</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">4,8</span></div>
+      <div class="completed">201 zleceń w sieci</div>
+      <div class="area"><strong>Obszar</strong>Jeżyce · Nowe Miasto</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span><span>SilverTech</span></div>
+    </article>
+
+    <article class="provider-card reveal">
+      <div class="provider-avatar">DK</div>
+      <div class="name">Dorota Kaczmarek</div>
+      <div class="cat">Podolog · Pedicure</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">5,0</span></div>
+      <div class="completed">118 zleceń w sieci</div>
+      <div class="area"><strong>Obszar</strong>Cały Poznań</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span><span>PTP</span></div>
+    </article>
+
+    <article class="provider-card reveal d1">
+      <div class="provider-avatar">PW</div>
+      <div class="name">Paweł Wojciechowski</div>
+      <div class="cat">Ślusarz · Awaryjny 24/7</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">4,7</span></div>
+      <div class="completed">89 zleceń w sieci</div>
+      <div class="area"><strong>Obszar</strong>Cały Poznań · 24/7</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span><span>24/7</span></div>
+    </article>
+
+    <article class="provider-card reveal d2">
+      <div class="provider-avatar">MJ</div>
+      <div class="name">Magdalena Jasińska</div>
+      <div class="cat">Dietetyk · Trener</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">4,9</span></div>
+      <div class="completed">73 zlecenia w sieci</div>
+      <div class="area"><strong>Obszar</strong>Cały Poznań</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span><span>Certyfikat</span></div>
+    </article>
+
+    <article class="provider-card reveal d3">
+      <div class="provider-avatar">AS</div>
+      <div class="name">Adam Sikorski</div>
+      <div class="cat">Ogrodnik</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">4,8</span></div>
+      <div class="completed">62 zlecenia w sieci</div>
+      <div class="area"><strong>Obszar</strong>Grunwald · Wilda · Junikowo</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span></div>
+    </article>
+
+    <article class="provider-card reveal">
+      <div class="provider-avatar">IW</div>
+      <div class="name">Iwona Wróbel</div>
+      <div class="cat">Notariusz · Prawnik</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">5,0</span></div>
+      <div class="completed">44 zlecenia w sieci</div>
+      <div class="area"><strong>Obszar</strong>Cały Poznań + powiat</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span><span>KRN</span></div>
+    </article>
+
+    <article class="provider-card reveal d1">
+      <div class="provider-avatar">SB</div>
+      <div class="name">Sylwia Baran</div>
+      <div class="cat">Pomoc IT dla seniora</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">4,9</span></div>
+      <div class="completed">128 zleceń w sieci</div>
+      <div class="area"><strong>Obszar</strong>Cały Poznań</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span><span>SilverTech</span></div>
+    </article>
+
+    <article class="provider-card reveal d2">
+      <div class="provider-avatar">GK</div>
+      <div class="name">Grzegorz Krajewski</div>
+      <div class="cat">Serwis AGD</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">4,8</span></div>
+      <div class="completed">167 zleceń w sieci</div>
+      <div class="area"><strong>Obszar</strong>Cały Poznań + Swarzędz</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span><span>Gwarancja 6m</span></div>
+    </article>
+
+    <article class="provider-card reveal d3">
+      <div class="provider-avatar">MO</div>
+      <div class="name">Michał Olejniczak</div>
+      <div class="cat">Malarz · Tapeciarz</div>
+      <div class="rating"><span class="stars">★★★★★</span><span class="score">4,7</span></div>
+      <div class="completed">54 zlecenia w sieci</div>
+      <div class="area"><strong>Obszar</strong>Cały Poznań</div>
+      <div class="provider-badges"><span>KRK</span><span>OC</span></div>
+    </article>
+  </div>
+
+  <div style="margin-top: 48px; text-align: center; font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--ink-mute);">
+    · pełny katalog 30+ wykonawców po zalogowaniu w dashboardzie rodziny ·
+  </div>
+</section>
+
+<!-- ============================== JAK ZAMÓWIĆ ============================== -->
+<section class="how" id="jak" data-screen-label="Jak zamówić">
+  <div class="section-tag">
+    <span class="num">iv.</span>
+    <span class="sc-sm">Jak zamówić</span>
+    <span class="line"></span>
+    <span class="sc-sm">Trzy kroki · średnio 5 minut</span>
+  </div>
+
+  <div class="section-hd">
+    <h2 class="reveal">
+      Bez aplikacji.<br>
+      Bez formularzy.<br>
+      <em>Bez czekania na infolinii.</em>
+    </h2>
+    <p class="lede reveal d1">
+      Senior mówi jedno zdanie do Adama. Adam ustala szczegóły w drugiej rozmowie.
+      Wykonawca puka do drzwi. Całość — <em style="font-family:var(--serif); color:var(--sage-deep);">średnio
+      pięć minut zaangażowania seniora</em>, reszta dzieje się w tle.
+    </p>
+  </div>
+
+  <div class="how-grid">
+    <div class="how-step reveal">
+      <div class="n">01</div>
+      <h3>Powiedz Adamowi</h3>
+      <p>„Adamie, potrzebuję dziś hydraulika — cieknie kran w kuchni." Adam dopytuje: kiedy najlepiej, pilne czy nie, wybrany wykonawca czy pierwszy dostępny. Zapisuje wszystko.</p>
+      <div class="time">Rozmowa · 90 sek.</div>
+    </div>
+    <div class="how-step reveal d1">
+      <div class="n">02</div>
+      <h3>Adam kontaktuje wykonawcę</h3>
+      <p>System wysyła zlecenie do wykonawcy pasującego do lokalizacji i preferencji. Wykonawca ma 30 minut na akceptację. Jeśli odmawia — automatycznie kolejny w rankingu.</p>
+      <div class="time">Akceptacja · do 30 min.</div>
+    </div>
+    <div class="how-step reveal d2">
+      <div class="n">03</div>
+      <h3>Wykonawca puka do drzwi</h3>
+      <p>Adam dzwoni z potwierdzeniem: „Pani Halino, Pan Jarosław będzie o 14:20". Po wizycie Adam pyta: „Jak poszło?". Rodzina widzi wszystko w dashboardzie — kto, kiedy, ile, ocena.</p>
+      <div class="time">Wizyta · średnio 24h od zamówienia</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CTA ============================== -->
+<section class="cta" id="kontakt" data-screen-label="Kontakt">
+  <h2 class="reveal">
+    Nie musisz szukać<br>
+    hydraulika, fryzjera<br>
+    ani <em>dobrego człowieka.</em>
+  </h2>
+  <p class="hero-lede reveal d1" style="margin: 0 auto 20px; max-width: 620px;">
+    Zadzwoń raz. Zapisz numer. Powiedz komu ma pomagać Adam.
+    Od tej chwili — wszystko czego dom seniora wymaga, jest jednym zdaniem.
+  </p>
+  <div class="phone reveal d2">
+    <a href="tel:+48501420042">+48 501 42 00 42</a>
+  </div>
+  <div class="hours reveal d3">Pon.–Pt. · 09:00 – 17:00 · Poznań</div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="b">SilverTech</div>
+      <p>Spółdzielnia Socjalna · w organizacji. Poznań, MMXXVI.
+      Marketplace „Adam Koncierż" — 35 usług dla seniorów zamawianych głosem.</p>
+    </div>
+    <div>
+      <h5>Marketplace</h5>
+      <ul>
+        <li><a href="#uslugi">Katalog 35 usług</a></li>
+        <li><a href="#wykonawcy">Sprawdzeni wykonawcy</a></li>
+        <li><a href="#zaufanie">Trzy warstwy zaufania</a></li>
+        <li><a href="#jak">Jak zamówić</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>SilverTech</h5>
+      <ul>
+        <li><a href="index.html">Strona główna</a></li>
+        <li><a href="index.html#pakiety">Pakiety ASYSTA</a></li>
+        <li><a href="index.html#adam">Adam · AI Companion</a></li>
+        <li><a href="index.html#zaczac">Jak zacząć</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Kontakt</h5>
+      <ul>
+        <li>Tomasz Kotliński</li>
+        <li>Przewodniczący Zarządu</li>
+        <li>+48 501 42 00 42</li>
+        <li>kotlinski.tomek<br>@gmail.com</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>SilverTech · Marketplace · Poznań · MMXXVI</span>
+    <span style="color: var(--ochre); font-family: var(--serif); font-style: italic; letter-spacing: 0; text-transform: none; font-size: 16px;">Adam Koncierż · 35 usług · 250+ wykonawców</span>
+    <span>Materiał otwarty · v.1</span>
+  </div>
+</footer>
+
+<script>
+// ---------------- Category filter ----------------
+(function categoryFilter(){
+  const buttons = document.querySelectorAll('.cat-btn');
+  const cards = document.querySelectorAll('.service-card');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cat;
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      cards.forEach(card => {
+        const match = cat === 'all' || card.dataset.cat === cat;
+        card.style.display = match ? '' : 'none';
+      });
+    });
+  });
+})();
+
+// ---------------- Scroll reveals ----------------
+(function reveals(){
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => {
+    if (!el.classList.contains('in')) io.observe(el);
+  });
+})();
+
+// ---------------- Nav solid on scroll ----------------
+(function navState(){
+  const nav = document.getElementById('topnav');
+  function update() {
+    if (window.scrollY > 40) nav.classList.add('solid');
+    else nav.classList.remove('solid');
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+// ---------------- Voice bar rotating prompts ----------------
+(function voicePrompt(){
+  const el = document.querySelector('.voice-bar .prompt');
+  if (!el) return;
+  const prompts = [
+    ['„Adamie,', 'potrzebuję dziś hydraulika'],
+    ['„Adamie,', 'poproszę fryzjera na jutro'],
+    ['„Adamie,', 'transport do lekarza w środę o 10'],
+    ['„Adamie,', 'ktoś do sprzątania na piątek'],
+    ['„Adamie,', 'niech ktoś przyjdzie z zakupami'],
+    ['„Adamie,', 'ktoś sprawdzi klimatyzację w salonie']
+  ];
+  let idx = 0;
+  setInterval(() => {
+    idx = (idx + 1) % prompts.length;
+    const [em, txt] = prompts[idx];
+    el.style.opacity = 0;
+    setTimeout(() => {
+      el.innerHTML = '<em>' + em + '</em> ' + txt + '<span class="cursor"></span>"';
+      el.style.opacity = 1;
+    }, 300);
+  }, 4200);
+  el.style.transition = 'opacity 0.3s ease';
+})();
+</script></body>
+</html>
