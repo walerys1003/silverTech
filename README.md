@@ -6,7 +6,7 @@
 - **Features**: 12-sekcyjny landing page narracyjny + pełny marketplace 35 usług codziennego życia dla seniora
 
 ## URLs
-- **Produkcja (Cloudflare Pages)**: https://silvertech-410.pages.dev/
+- **Produkcja (Cloudflare Pages)**: https://silvertech-poznan.pages.dev/
 - **GitHub**: https://github.com/walerys1003/silverTech
 - **Strony**:
   - `/` — Landing page (12 sekcji narracyjnych)
@@ -67,8 +67,8 @@ Projekt wdrożony z **Genspark Design handoff** (repo `designer2-d43c9f82-5df5-4
 
 ## Deployment
 - **Platform**: Cloudflare Pages (BYOK — user's own CF account)
-- **Project name**: silvertech
-- **Status**: ✅ Active — https://silvertech-410.pages.dev/
+- **Project name**: silvertech-poznan
+- **Status**: ✅ Active — https://silvertech-poznan.pages.dev/
 - **Tech Stack**: Czysty static HTML/CSS/JS + 19 zoptymalizowanych assetów (20MB)
 - **Last Updated**: 2026-07-11
 
