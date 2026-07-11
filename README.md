@@ -6,8 +6,8 @@
 - **Features**: 12-sekcyjny landing page narracyjny + pełny marketplace 35 usług codziennego życia dla seniora
 
 ## URLs
-- **Lokalne (sandbox)**: https://3000-it31c6kypulxfl6lx3c13-d0b9e1e2.sandbox.novita.ai/
-- **Produkcja**: (do wdrożenia na Cloudflare Pages)
+- **Produkcja (Cloudflare Pages)**: https://silvertech-410.pages.dev/
+- **GitHub**: https://github.com/walerys1003/silverTech
 - **Strony**:
   - `/` — Landing page (12 sekcji narracyjnych)
   - `/marketplace` — Marketplace Adam Koncierż (katalog 35 usług + 16 wykonawców)
@@ -38,6 +38,14 @@ Projekt wdrożony z **Genspark Design handoff** (repo `designer2-d43c9f82-5df5-4
 
 **Marketplace**: Hero z voice-bar (rotujące prompty), katalog 35 usług w 9 kategoriach z filtrem, 3 warstwy zaufania, 16 wykonawców, 3 kroki zamówienia
 
+## Performance Optimizations
+- **WebP konwersja**: 10 dużych PNG → WebP (jakość 88), redukcja 90-97% (57MB → 3.8MB)
+- **Kompresja wideo**: Hero MP4 29MB → 12MB (H.264 CRF 24, brak audio, faststart)
+- **Resource hints**: `<link rel="preload">` dla hero video, poster i first-fold image
+- **Loading strategy**: `loading="eager"` + `fetchpriority="high"` dla hero assets, `loading="lazy"` + `decoding="async"` dla below-fold images
+- **Cache headers**: Assets 1yr immutable, HTML no-cache (via `_headers`)
+- **Total size**: 87MB → 20MB (77% redukcja)
+
 ## Data Architecture
 - **Data Models**: Statyczne dane inline w HTML (35 usług z data-cat, 16 wykonawców, 7 deklaracji manifestu, 45+ partnerstw)
 - **Storage Services**: Brak — projekt jest w 100% statyczny (zero backend, zero build-step)
@@ -58,34 +66,36 @@ Projekt wdrożony z **Genspark Design handoff** (repo `designer2-d43c9f82-5df5-4
 - **Wrangler** — CLI dla Cloudflare Pages
 
 ## Deployment
-- **Platform**: Cloudflare Pages
-- **Status**: ✅ Lokalnie zweryfikowane, gotowe do wdrożenia
-- **Tech Stack**: Czysty static HTML/CSS/JS + 18 assetów binarnych (88MB)
+- **Platform**: Cloudflare Pages (BYOK — user's own CF account)
+- **Project name**: silvertech
+- **Status**: ✅ Active — https://silvertech-410.pages.dev/
+- **Tech Stack**: Czysty static HTML/CSS/JS + 19 zoptymalizowanych assetów (20MB)
 - **Last Updated**: 2026-07-11
 
 ## Project Structure
 ```
 webapp/
 ├── public/                    ← Cloudflare Pages output (pages_build_output_dir)
-│   ├── index.html             ← Landing page (108KB, 12 sekcji)
+│   ├── index.html             ← Landing page (109KB, 12 sekcji)
 │   ├── marketplace.html       ← Marketplace Adam Koncierż (62KB)
 │   ├── _headers               ← Cache + security headers
 │   ├── _routes.json           ← Static routing (no Functions)
 │   ├── site.webmanifest       ← PWA manifest
-│   └── assets/                ← 18 assetów binarnych (88MB)
-│       ├── samson-lion-hero.mp4          ← Wideo cinematic hero (30MB)
-│       ├── samson-lion-hero-poster.jpg   ← Poster wideo
-│       ├── portrait-halina.png           ← Portret AI · Pani Halina
-│       ├── portrait-zdzislaw.png         ← Portret AI · Pan Zdzisław
-│       ├── portrait-krystyna.png         ← Portret AI · Pani Krystyna
-│       ├── tomasz-kotlinski.jpg          ← Portret założyciela
-│       ├── adam-hero-family.png          ← Mockup: ojciec + syn
-│       ├── adam-triptych-pl.png          ← Mockup: 3 telefony
-│       ├── adam-screen-voice.png         ← Mockup: Adam voice
-│       ├── adam-screen-rodzina.png       ← Mockup: rodzina
-│       ├── adam-screen-zdrowie.png       ← Mockup: monitoring zdrowia
-│       ├── samson-lion-transparent.png   ← Emblemat fallback
-│       ├── og-image-1200.png            ← Open Graph 1200×630
+│   └── assets/                ← 19 zoptymalizowanych assetów (20MB)
+│       ├── samson-lion-hero.mp4          ← Wideo cinematic hero (12MB, skompresowane)
+│       ├── samson-lion-hero-poster.jpg   ← Poster wideo (320KB)
+│       ├── portrait-halina.webp          ← Portret AI · Pani Halina (541KB)
+│       ├── portrait-zdzislaw.webp        ← Portret AI · Pan Zdzisław (715KB)
+│       ├── portrait-krystyna.webp        ← Portret AI · Pani Krystyna (300KB)
+│       ├── tomasz-kotlinski.jpg          ← Portret założyciela (1.8MB)
+│       ├── adam-hero-family.webp         ← Mockup: ojciec + syn (691KB)
+│       ├── adam-triptych-pl.webp         ← Mockup: 3 telefony (311KB)
+│       ├── adam-screen-voice.webp        ← Mockup: Adam voice (243KB)
+│       ├── adam-screen-rodzina.webp      ← Mockup: rodzina (385KB)
+│       ├── adam-screen-zdrowie.webp      ← Mockup: monitoring zdrowia (177KB)
+│       ├── samson-lion-transparent.webp  ← Emblemat fallback (334KB)
+│       ├── og-image-1200.png            ← Open Graph 1200×630 (1.4MB, PNG dla social)
+│       ├── og-image-1200.webp           ← Open Graph WebP (56KB)
 │       ├── favicon-32/192/512.png        ← Favicony
 │       └── apple-touch-icon.png         ← iOS icon
 ├── wrangler.jsonc             ← Cloudflare Pages config
