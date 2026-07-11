@@ -1799,6 +1799,13 @@ footer li a:hover { color: var(--night-ink); }
    RESPONSIVE CONSOLIDATION · covers zoom 125-175% and tablet
    ======================================================== */
 
+/* Disable desktop zoom on tablet/mobile — zoom:1.5 is only for large desktop screens.
+   Without this, a 375px smartphone renders everything at 150% scale (effective 250px),
+   making all content far too large and causing horizontal scrolling. */
+@media (max-width: 1180px) {
+  html { zoom: 1; }
+}
+
 /* ≤ 1180px · covers 150% zoom on 1440-1600 desktops, small tablets landscape */
 @media (max-width: 1180px) {
   section { padding-left: clamp(24px, 5vw, 72px); padding-right: clamp(24px, 5vw, 72px); }

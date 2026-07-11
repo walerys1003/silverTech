@@ -772,6 +772,14 @@ footer li a:hover { color: var(--night-ink); }
 .reveal.d3 { transition-delay: 0.24s; }
 
 /* ========== RESPONSIVE ========== */
+
+/* Disable desktop zoom on tablet/mobile — zoom:1.5 is only for large desktop screens.
+   Without this, a 375px smartphone renders everything at 150% scale (effective 250px),
+   making all content far too large and causing horizontal scrolling. */
+@media (max-width: 1180px) {
+  html { zoom: 1; }
+}
+
 @media (max-width: 1180px) {
   section { padding-left: clamp(24px, 5vw, 72px); padding-right: clamp(24px, 5vw, 72px); }
   .topnav { padding: 18px clamp(20px, 4vw, 48px); }
@@ -781,6 +789,10 @@ footer li a:hover { color: var(--night-ink); }
   .providers { grid-template-columns: repeat(3, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
+@media (max-width: 900px) {
+  /* Hide brand subtitle on tablet — frees ~300px of horizontal space */
+  .brand small { display: none; }
+}
 @media (max-width: 720px) {
   section { padding: 72px 20px; }
   .hero { padding: 88px 20px 56px; }
@@ -788,9 +800,42 @@ footer li a:hover { color: var(--night-ink); }
   .hero-title { font-size: clamp(30px, 8vw, 48px); }
   .services { grid-template-columns: 1fr; }
   .providers { grid-template-columns: 1fr; }
-  .brand small { display: none; }
   .brand { font-size: 18px; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+  /* Compact topnav: collapse back-link to arrow-only icon, tighten CTA */
+  .nav-right { gap: 10px; }
+  .nav-back { 
+    padding: 6px 10px;
+    border: 1px solid var(--hairline);
+    line-height: 1;
+  }
+  .nav-back .back-text { display: none; }
+  .nav-back .arrow { font-size: 18px; font-style: normal; }
+  .nav-back:hover { border-color: var(--ink); }
+  .nav-cta { padding: 7px 12px; font-size: 9px; }
+  .service-card { padding: 24px 20px; min-height: auto; }
+  .provider-card { padding: 24px 20px; min-height: auto; }
+  .trust-card { padding: 32px 24px; min-height: auto; }
+  .how-step { padding: 28px 24px; min-height: auto; }
+}
+
+/* ≤ 420px · small phone portrait */
+@media (max-width: 420px) {
+  .brand { font-size: 15px; gap: 8px; }
+  .hero-title { font-size: clamp(26px, 9vw, 38px); }
+  .hero-meta-item { grid-template-columns: auto 1fr; gap: 16px; }
+  .hero-meta-item .n { font-size: 32px; }
+  .voice-bar .prompt { font-size: 16px; }
+  .service-card h3 { font-size: 22px; }
+  .service-card .meta { grid-template-columns: 1fr; }
+  .provider-avatar { width: 56px; height: 56px; font-size: 24px; }
+  .provider-card .name { font-size: 19px; }
+  .trust-header h2 { font-size: clamp(26px, 8vw, 40px); }
+  .cta h2 { font-size: clamp(26px, 8vw, 42px); }
+  .cta .phone { font-size: clamp(22px, 6vw, 32px); }
+  .cat-btn { padding: 8px 12px; font-size: 10px; }
+  .section-hd h2 { font-size: clamp(24px, 7vw, 36px); }
 }
 
 html, body { overflow-x: clip; max-width: 100%; }
@@ -806,7 +851,7 @@ html, body { overflow-x: clip; max-width: 100%; }
     <small>Marketplace · Adam Koncierż</small>
   </div>
   <div class="nav-right">
-    <a class="nav-back" href="index.html"><span class="arrow">←</span> Wróć do SilverTech</a>
+    <a class="nav-back" href="index.html" aria-label="Wróć do SilverTech"><span class="arrow">←</span> <span class="back-text">Wróć do SilverTech</span></a>
     <a class="nav-cta" href="#kontakt">Zadzwoń ↗</a>
   </div>
 </nav>
